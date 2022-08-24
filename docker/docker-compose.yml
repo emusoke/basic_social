@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  app:
+    build:
+      context: ..
+      dockerfile: ./docker/Dockerfile
+    ports: 
+      - 80:80
+
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: magical_password
+    ports:
+      - 5432:5432
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
