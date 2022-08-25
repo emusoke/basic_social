@@ -6,17 +6,27 @@ services:
       dockerfile: ./docker/Dockerfile
     ports: 
       - 80:80
+    environment:
+      - DATABASE_HOSTNAME=postgres
+      - DATABASE_PORT=5432
+      - DATABASE_PASSWORD=magical_password 
 
-  db:
+  postgres:
     image: postgres:latest
     restart: always
     environment:
+      DATABASE_HOSTENAME: postgres
       POSTGRES_PASSWORD: magical_password
     ports:
       - 5432:5432
+    volumes:
+      - social-postgres-data:/var/lib/postgresql/data
 
   adminer:
     image: adminer
     restart: always
     ports:
       - 8080:8080
+
+volumes:
+  social-postgres-data:
