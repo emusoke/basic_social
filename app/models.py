@@ -16,7 +16,7 @@ class User(Base):
 class Post(Base):
     __tablename__ = "posts"
     id = Column(Integer, primary_key = True, index = True)
-    title = Column(Integer, index = True)
+    title = Column(String, index = True)
     post = Column(String, index = True)
     author_id = Column(Integer, ForeignKey("users.id", ondelete = "CASCADE"))
 
@@ -25,11 +25,11 @@ class Post(Base):
 class Votes(Base):
     __tablename__ = "likes"
     id = Column(Integer, primary_key=True, index = True)
-    used_id = Column(Integer, ForeignKey("users.id", ondelete = "CASCASE"))
-    post_id = Column(Integer, ForeignKey("posts.id" , ondelete = "CASCASE"))
+    used_id = Column(Integer, ForeignKey("users.id", ondelete = "CASCADE"))
+    post_id = Column(Integer, ForeignKey("posts.id" , ondelete = "CASCADE"))
 
 class Follower(Base):
     __tablename__ = "followers"
     id = Column(Integer, primary_key=True, index = True)
-    user_id = Column(Integer, ForeignKey("users.id", ondelete = "CASCASE"))
-    following_id = Column(Integer, ForeignKey("users.id", ondelete = "CASCASE"))
+    user_id = Column(Integer, ForeignKey("users.id", ondelete = "CASCADE"))
+    following_id = Column(Integer, ForeignKey("users.id", ondelete = "CASCADE"))

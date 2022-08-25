@@ -30,3 +30,12 @@ async def create_users(user: schemas.UserCreate,db: Session = Depends(get_db)):
     if db_user:
         raise HTTPException(status_code = 404, detail = "Username already exists")
     return crud.create_user(db=db,user=user)
+
+@app.get("/posts/")
+async def read_all_posts(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    posts = crud.get_all_posts(db,skip,limit)
+    return posts
+
+@app.post("/posts/{user_id}/post")
+async def make_post(user_id: int, post: schemas.CreatePost,db: Session = Depends(get_db)):
+    return crud.create_post(db=db,post=post,user_id=user_id)

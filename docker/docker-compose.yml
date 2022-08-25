@@ -4,6 +4,8 @@ services:
     build:
       context: ..
       dockerfile: ./docker/Dockerfile
+    depends_on:
+      - postgres
     ports: 
       - 80:80
     environment:

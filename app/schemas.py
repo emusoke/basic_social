@@ -40,5 +40,5 @@ class User(UserBase):
 class Votes(BaseModel):
     post_id: int
 
-class Follower(BaseModel):
+class Follower (BaseModel):
     following_id: int
